@@ -1,49 +1,37 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Filmes
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Filmes</ion-title>
   </ion-toolbar>
+
+  <ion-searchbar placeholder="Buscar filmes..." (ionInput)="onSearchChange($event)">
+  </ion-searchbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-searchbar placholder="Buscar"></ion-searchbar>
-
   <ion-list>
-    <ion-item-sliding>
+    <ion-item-sliding *ngFor="let movie of movies">
       <ion-item lines="full">
         <ion-thumbnail slot="start">
-          <img alt="Silhouette of mountains"
-            src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/uJ1kQWTY1nElMcrrbHtDitbV85K.jpg" />
+          <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="Poster do filme" />
         </ion-thumbnail>
 
         <ion-label class="ion-text-wrap">
-          <div>
-            <h1>Luca (2021)</h1>
-            <p>17/06/2021</p>
-            <p>Animação, comédia, aventura e Drama</p>
-          </div>
+          <h2>{{ movie.title }}</h2>
+          <p>{{ movie.release_date | date: 'dd/MM/yyyy' }}</p>
+          <p>{{ movie.vote_average | number: '1.0-1' }} / 10</p>
         </ion-label>
 
         <ion-chip color="success" outline>
-          <ion-label>80%</ion-label>
+          <ion-label>{{ (movie.vote_average * 10) | number: '1.0-0' }}%</ion-label>
         </ion-chip>
       </ion-item>
 
-
+      <!-- ❤️ Opções ao deslizar -->
       <ion-item-options side="end">
-        <ion-item-option id="present-alert">
+        <ion-item-option color="danger" (click)="presentToast('bottom')">
           <ion-icon name="heart"></ion-icon>
-         
-
-
-          <ion-alert trigger="present-alert" header="Deseja favoritar esse filme?" [buttons]="alertButtons"
-            (didDismiss)="setResult($event)" expand="block"></ion-alert>
         </ion-item-option>
       </ion-item-options>
-
-
     </ion-item-sliding>
   </ion-list>
-
 </ion-content>
