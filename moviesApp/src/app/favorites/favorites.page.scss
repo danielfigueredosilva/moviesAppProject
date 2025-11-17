@@ -1,0 +1,19 @@
+.header-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+  width: 100%;
+  // background-color: #5b00d1;
+  background-color: #0D0D0D;
+  padding-right: 20px;
+  padding-left: 10px;
+  padding: 15px;
+}
+
+.titulo {
+  // font-family: 'Montserrat', sans-serif;
+
+  // Fonte semelhante a netflix
+  font-family: 'Bebas Neue', cursive;
+}

@@ -8,6 +8,7 @@ import { RatingTextPipe } from '../pipes/rating-text-pipe';
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.page.html',
+  styleUrls: ['./favorites.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, RouterLink, RatingTextPipe]
 })

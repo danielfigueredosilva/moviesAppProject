@@ -1,30 +1,41 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar>
+    <div class="header-container">
+
+      <a [routerLink]="'/'">
+        <img src="../../assets/imagens/logo pobre.png" alt="Logo" width="40px">
+      </a>
+      <div class="titulo">
+        <ion-title>Favoritos</ion-title>
+      </div>
+      <a routerLink="/favorites">
+        <img src="../../assets/imagens/coracao-ecuro.png" alt="icone" width="30">
+      </a>
+
+    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
-<article>
-  <h1>Filmes Favoritos</h1>
-  @for (movie of fav.getAll(); track movie) {
-    <ion-item>
-        <ion-thumbnail slot="start">
-          <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="Poster do filme" />
-        </ion-thumbnail>
-      <ion-label>
-          <h2>{{ movie.title | uppercase }}</h2>
-          <p>{{ movie.release_date | date: 'dd/MM/yyyy' }}</p>
-          <p>{{ movie.vote_average | ratingText }} </p>
-        </ion-label>
-      <ion-button slot="end" color="danger" (click)="fav.remove(movie.id)">
-        Remover
-      </ion-button>
-    </ion-item>
-  }@empty {
-    <p>Nenhum filme favoritado</p>
-  }
-</article>
+<ion-content [fullscreen]="true">
+  <article>
+    @for (movie of fav.getAll(); track movie) {
+      <ion-item>
+          <ion-thumbnail slot="start">
+            <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="Poster do filme" />
+          </ion-thumbnail>
+        <ion-label>
+            <h2>{{ movie.title | uppercase }}</h2>
+            <p>{{ movie.release_date | date: 'dd/MM/yyyy' }}</p>
+            <p>{{ movie.vote_average | ratingText }} </p>
+          </ion-label>
+        <ion-button slot="end" color="danger" (click)="fav.remove(movie.id)">
+          Remover
+        </ion-button>
+      </ion-item>
+    }@empty {
+      <p>Nenhum filme favoritado</p>
+    }
+  </article>
 
 
 </ion-content>
