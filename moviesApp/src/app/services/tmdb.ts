@@ -21,4 +21,9 @@ export class TmdbService {
   searchMovies(query: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/search/movie?api_key=${this.apiKey}&language=pt-BR&query=${query}`);
   }
+
+  // Buscar detalhes de um filme pelo ID
+  pegaDetalheFilme(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/movie/${id}?api_key=${this.apiKey}&language=pt-BR`);
+  }
 }
